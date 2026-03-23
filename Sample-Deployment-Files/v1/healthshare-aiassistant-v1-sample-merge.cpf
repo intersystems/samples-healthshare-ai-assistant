@@ -6,7 +6,7 @@ ModifySystem:Name=SYSTEM,AutheEnabled=33564655
 
 
 
-# Create resources for COMPONENT_NAMESPACE
+# Create resources for MODULE NAMESPACE
 
 CreateResource:Name=%DB_<MODULE-NAMESPACE-UPPERCASE>-SOURCE,Description=The <MODULE-NAMESPACE-UPPERCASE>-SOURCE database
 
@@ -28,7 +28,7 @@ CreateRole:Name=%HS_DB_<MODULE-NAMESPACE-UPPERCASE>,Resources=%DB_<MODULE-NAMESP
 
 
 
-# Create global and source code databases for the component namespace
+# Create global and source code databases for the module namespace
 
 CreateDatabase:Name=<MODULE-NAMESPACE-UPPERCASE>-DATA,Directory=<instance-install-directory>/mgr/<module-namespace-lowercase>-data,Resource=%DB_<MODULE-NAMESPACE-UPPERCASE>-DATA
 
@@ -36,19 +36,19 @@ CreateDatabase:Name=<MODULE-NAMESPACE-UPPERCASE>-SOURCE,Directory=<instance-inst
 
 
 
-# Create component namespace
+# Create module namespace
 
 CreateNamespace:Name=<MODULE-NAMESPACE-UPPERCASE>,Globals=<MODULE-NAMESPACE-UPPERCASE>-DATA,Routines=<MODULE-NAMESPACE-UPPERCASE>-SOURCE,Interop=0
 
 
 
-# Create ensemble package mappings to the component namespace - this is required for code to load and compile in the following step
+# Create ensemble package mappings to the module namespace - this is required for code to load and compile in the following step
 
 Execute:Namespace="<MODULE-NAMESPACE-UPPERCASE>",ClassName="%EnsembleMgr",MethodName="map2enslib",Arg1="<MODULE-NAMESPACE-UPPERCASE>",Arg2="1"
 
 
 
-# Install module into the component namespace using local tarball
+# Install module into the module namespace using local tarball
 
 Execute:Namespace="<MODULE-NAMESPACE-UPPERCASE>",ClassName="%IPM.Main",MethodName="Shell",Arg1="load <path-and-filename-of-module-artifact> -verbose -DNoLock=1 -DNoTransaction=1 -DNoMapping=1 -synchronous"
 
@@ -72,7 +72,7 @@ CreateMapPackage:Namespace="HSSYS",Name="HSMOD.SAML.Common",Database=<MODULE-NAM
 
 
 
-# Add global mapping to HSSYS to access service registry in component namespace
+# Add global mapping to HSSYS to access service registry in module namespace
 
 CreateMapGlobal:Namespace="HSSYS",Name="HS.Registry.Service.*",Database=<MODULE-NAMESPACE-UPPERCASE>-DATA
 
@@ -108,7 +108,7 @@ Execute:Namespace="HSCUSTOM",ClassName="%SYSTEM.OBJ",MethodName="Import",Arg1="<
 
 
 
-# Create package mapping from HSCUSTOM to component namespace such that application can get HS.Local.ZAUTHENTICATE.cls
+# Create package mapping from HSCUSTOM to module namespace such that application can get HS.Local.ZAUTHENTICATE.cls
 
 # This is because customer will be changing HS.Local.ZAUTHENTICATE.cls in HSCUSTOM only and that's surviving the upgrade
 
@@ -116,7 +116,7 @@ CreateMapPackage:Namespace="<MODULE-NAMESPACE-UPPERCASE>",Name="HS.Local",Databa
 
 
 
-# Run component specific configurations - this is typically installer code
+# Run module specific configurations - this is typically installer code
 
 Execute:Namespace="<MODULE-NAMESPACE-UPPERCASE>",ClassName="%IPM.Main",MethodName="Shell",Arg1="healthshare_ai_assistant SetUpComponent -verbose"
 
