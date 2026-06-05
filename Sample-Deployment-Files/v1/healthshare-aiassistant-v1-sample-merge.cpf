@@ -41,6 +41,10 @@ CreateDatabase:Name=<MODULE-NAMESPACE-UPPERCASE>-SOURCE,Directory=<instance-inst
 CreateNamespace:Name=<MODULE-NAMESPACE-UPPERCASE>,Globals=<MODULE-NAMESPACE-UPPERCASE>-DATA,Routines=<MODULE-NAMESPACE-UPPERCASE>-SOURCE,Interop=0
 
 
+# Map IPM to the module namespace (User should have IPM installed in USER namespace based on documentation)
+
+Execute:Namespace="USER",ClassName="%IPM.Main",MethodName="Shell",Arg1="enable -map -globally"
+
 
 # Create ensemble package mappings to the module namespace - this is required for code to load and compile in the following step
 
@@ -69,6 +73,10 @@ CreateMapPackage:Namespace="HSSYS",Name="HS.Registry",Database=<MODULE-NAMESPACE
 CreateMapPackage:Namespace="HSSYS",Name="HS.Auth.Client.Custom",Database=<MODULE-NAMESPACE-UPPERCASE>-SOURCE
 
 CreateMapPackage:Namespace="HSSYS",Name="HSMOD.SAML.Common",Database=<MODULE-NAMESPACE-UPPERCASE>-SOURCE
+
+CreateMapPackage:Namespace="HSSYS",Name="%pkg.isc.changehistory",Database=<MODULE-NAMESPACE-UPPERCASE>-SOURCE
+
+CreateMapPackage:Namespace="HSSYS",Name="HS.HC.ChangeHistory",Database=<MODULE-NAMESPACE-UPPERCASE>-SOURCE
 
 
 
