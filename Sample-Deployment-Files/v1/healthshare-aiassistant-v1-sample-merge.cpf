@@ -1,11 +1,5 @@
 [Actions]
 
-# Enable delegated authentication for the instance
-
-ModifySystem:Name=SYSTEM,AutheEnabled=33564655
-
-
-
 # Create resources for MODULE NAMESPACE
 
 CreateResource:Name=%DB_<MODULE-NAMESPACE-UPPERCASE>-SOURCE,Description=The <MODULE-NAMESPACE-UPPERCASE>-SOURCE database
