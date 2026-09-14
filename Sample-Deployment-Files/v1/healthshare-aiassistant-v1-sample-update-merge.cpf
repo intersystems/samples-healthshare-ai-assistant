@@ -18,7 +18,7 @@ CreateMapPackage:Namespace="HSSYS",Name="HS.HC.ChangeHistory",Database=<MODULE-N
 
 # Install module into the module namespace using local tarball
 
-Execute:Namespace="<MODULE-NAMESPACE-UPPERCASE>",ClassName="%IPM.Main",MethodName="Shell",Arg1="load <path-and-filename-of-module-artifact> -verbose -DNoLock=1 -DNoTransaction=1 -DNoMapping=1 -synchronous"
+Execute:Namespace="<MODULE-NAMESPACE-UPPERCASE>",ClassName="%IPM.Main",MethodName="Shell",Arg1="update -path <path-and-filename-of-module-artifact> -verbose -DNoLock=1 -DNoTransaction=1 -DNoMapping=1 -DIgnoreInstalled=1 healthshare_ai_assistant"
 
 
 
