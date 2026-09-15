@@ -72,6 +72,8 @@ CreateMapPackage:Namespace="HSSYS",Name="%pkg.isc.changehistory",Database=<MODUL
 
 CreateMapPackage:Namespace="HSSYS",Name="HS.HC.ChangeHistory",Database=<MODULE-NAMESPACE-UPPERCASE>-SOURCE
 
+CreateMapPackage:Namespace="HSSYS",Name="HS.HC.ChangeControl",Database=<MODULE-NAMESPACE-UPPERCASE>-SOURCE
+
 
 
 # Add global mapping to HSSYS to access service registry in module namespace
